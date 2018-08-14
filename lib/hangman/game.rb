@@ -16,8 +16,14 @@ module Hangman
       while true
         print "[#{chances - wrong_tries} chances left]: "
 
+        Signal.trap( "SIGINT") { Graphics.clear_screen
+        Graphics.you_give_up
+        exit}
+        ARGV.clear
+
         char = gets.chomp
         Graphics.clear_screen
+
 
         if word.include? char
           if guess.include? char
@@ -36,6 +42,31 @@ module Hangman
 
           unless placeholder.include? Graphics::OBFUSCATION_CHAR
             puts Graphics::ALIVE
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE2
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE3
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE2
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE3
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE2
+            sleep 0.5
+            Graphics.clear_screen
+            puts Graphics::ALIVE3
+            sleep 0.5
             puts "\n\nWELL DONE!! YOU SURVIVED"
             break
           end
@@ -52,10 +83,12 @@ module Hangman
               guess << char
             end
 
+
           if wrong_tries == chances
             puts Graphics::DEAD
             puts "\nARRRRGGGGGGGGGGG YOU LOST! 😭  😵  ☠️"
             break
+
           else
             puts 'Try another: ' + Graphics.obfuscate_word(word, guess)
           end
@@ -64,3 +97,16 @@ module Hangman
     end
   end
 end
+
+#if Signal.trap("INT")  { puts "I give up!" }
+#if trap("INT"){puts "interrupted"} #
+#end #
+#end #
+#trap("INT") do
+#  puts "interrupted"
+#  time_to_sleep = [0,$interval - (Time.now - $started)].max
+#  if time_to_sleep > 0
+#    sleep time_to_sleep
+#  end
+#          trap("INT"){puts "interrupted"}
+#          Signal.trap("INT")  { puts "I give up!" }

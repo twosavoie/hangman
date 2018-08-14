@@ -18,6 +18,20 @@ HANG
   /   \\
 WIN
 
+    ALIVE2 = <<WIN2
+
+  __(-_-)//
+     ( )
+     / \\
+WIN2
+
+     ALIVE3 = <<WIN3
+
+     (*_*)
+     -( )-
+      / \\
+WIN3
+#for some reason that double back-slash is important for it to run
     OBFUSCATION_CHAR = "👾"
 
     def self.clear_screen
@@ -40,5 +54,11 @@ WIN
 
       obfuscated
     end
+
+      def self.you_give_up
+        #I tried .give_up and it didn't work. Why?
+        puts "Awww. Another time!"
+        sleep 0.5
+      end
   end
 end
